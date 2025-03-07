@@ -1,27 +1,33 @@
-name: Update Notion Mood Tracker
+name: Update Notion
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '0 0 * * *' # Käivitab iga päev südaööl
+    - cron: '0 0 * * *' # Käivita iga päev südaööl (valikuline)
+  workflow_dispatch: # Luba käsitsi käivitamine
 
 jobs:
   update-notion:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Klooni repositoorium
+      - name: Klooni repository
         uses: actions/checkout@v3
 
       - name: Paigalda Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Installi sõltuvused
         run: npm install
+        working-directory: . # Veendu, et package.json on siin!
 
-      - name: Käivita skript
+      - name: Käivita skript Notioniga ühendamiseks
+        run: node script.js
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        run: node script.js
