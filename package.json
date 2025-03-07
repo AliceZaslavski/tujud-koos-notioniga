@@ -1,13 +1,13 @@
 {
   "name": "notion-mood-tracker",
   "version": "1.0.0",
-  "description": "Tujude jälgimise süsteem Notioniga",
+  "description": "Meeleolu jälgija, mis sünkroniseerib Notioniga",
   "main": "script.js",
-  "dependencies": {
-    "@notionhq/client": "^2.3.0",
-    "dotenv": "^16.0.3"
-  },
   "scripts": {
     "start": "node script.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.0",
+    "dotenv": "^16.0.3"
   }
 }
