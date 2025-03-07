@@ -18,8 +18,7 @@ jobs:
       - name: 📦 Paigalda Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Proovi '18' asemel ka '20', kui probleem püsib
-          cache: 'npm'
+          node-version: '18'
 
       - name: 📥 Installi sõltuvused
         run: npm install
