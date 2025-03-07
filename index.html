@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tujude Jälgija</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Tujude Jälgija</h1>
+        
+        <label for="date">Vali kuupäev:</label>
+        <input type="date" id="date">
+        
+        <label>Vali tujud ja protsendid:</label>
+        <div id="mood-buttons"></div>
+
+        <button onclick="saveMood()">Salvesta</button>
+        <div id="calendar"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
