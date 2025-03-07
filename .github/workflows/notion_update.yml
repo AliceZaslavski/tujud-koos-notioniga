@@ -1,32 +1,33 @@
-name: Update Notion
+name: Update Notion Database
 
 on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 0 * * *' # Käivita iga päev südaööl (valikuline)
-  workflow_dispatch: # Luba käsitsi käivitamine
+  workflow_dispatch:
 
 jobs:
   update-notion:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Klooni repository
+      - name: 🛠️ Klooni repositoorium
         uses: actions/checkout@v3
 
-      - name: Paigalda Node.js
-        uses: actions/setup-node@v3
+      - name: 🔧 Paigalda Node.js
+        uses: actions/setup-node@v20
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: 20
 
-      - name: Installi sõltuvused
+      - name: 📦 Installeeri sõltuvused
         run: npm install
-        working-directory: . # Veendu, et package.json on siin!
 
-      - name: Käivita skript Notioniga ühendamiseks
+      - name: 🔑 Kontrolli keskkonnamuutujad
+        run: |
+          if [ -z "${{ secrets.NOTION_API_KEY }}" ]; then echo "❌ NOTION_API_KEY puudub!"; exit 1; fi
+          if [ -z "${{ secrets.NOTION_DATABASE_ID }}" ]; then echo "❌ NOTION_DATABASE_ID puudub!"; exit 1; fi
+
+      - name: 🚀 Käivita skript Notioniga ühendamiseks
         run: node script.js
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
