@@ -14,10 +14,10 @@ jobs:
       - name: 🛠️ Klooni repositoorium
         uses: actions/checkout@v3
 
-      - name: 🔧 Paigalda Node.js
-        uses: actions/setup-node@v20
+      - name: 🔧 Paigalda Node.js (versioon 18)
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
 
       - name: 📦 Installeeri sõltuvused
         run: npm install
